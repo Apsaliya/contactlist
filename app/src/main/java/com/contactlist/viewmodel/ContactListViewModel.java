@@ -18,6 +18,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.HttpException;
 
 /**
  * Created by ankit on 19/01/18.
@@ -44,7 +45,6 @@ public class ContactListViewModel extends AndroidViewModel {
     }
 
     private void getContactList() {
-        Log.d("getContactList", "getContactList");
         compositeDisposable.add(contactRepo.getContactList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -58,27 +58,32 @@ public class ContactListViewModel extends AndroidViewModel {
                 })
                 .subscribe(contactListLiveData::setValue, value -> {
                     states.setState(States.ERROR);
+                    states.setErrorThrowable(value);
                     statesLiveData.setValue(states);
                 }));
     }
 
     public void sortList(int order) {
-        compositeDisposable.add(contactRepo.sortList(contactListLiveData.getValue(), order)
-                .subscribeOn(Schedulers.computation())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(subscription -> {
-                    states.setState(States.LOADING);
-                    statesLiveData.setValue(states);
-                })
-                .doOnComplete(() -> {
-                    states.setState(States.LOADING_FINISHED);
-                    statesLiveData.setValue(states);
-                })
-                .subscribe(contactListLiveData::setValue,
-                        value -> {
-                            states.setState(States.ERROR);
-                            statesLiveData.setValue(states);
-                        }));
+        if (contactListLiveData.getValue() != null) {
+            compositeDisposable.add(contactRepo.sortList(contactListLiveData.getValue(), order)
+                    .subscribeOn(Schedulers.computation())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe(subscription -> {
+                        states.setState(States.LOADING);
+                        statesLiveData.setValue(states);
+                    })
+                    .doOnComplete(() -> {
+                        states.setState(States.LOADING_FINISHED);
+                        statesLiveData.setValue(states);
+                    })
+                    .subscribe(contactListLiveData::setValue,
+                            value -> {
+                                states.setState(States.ERROR);
+                                statesLiveData.setValue(states);
+                            }));
+        } else {
+            getContactList();
+        }
 
     }
 }

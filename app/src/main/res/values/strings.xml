@@ -2,5 +2,7 @@
     <string name="app_name">ContactList</string>
     <string name="sort_aesc">Sort ascending</string>
     <string name="sort_desc">Sort descending</string>
+    <string name="something_went_wrong">Something went wrong. Please try again</string>
+    <string name="no_internet">You seem to be offline. Please check your data connection</string>
 
 </resources>

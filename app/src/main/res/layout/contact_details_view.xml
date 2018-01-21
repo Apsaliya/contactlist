@@ -25,14 +25,17 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:maxLines="1"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:visibility="visible"
+                android:paddingStart="24dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
                 tools:text="Register should always test with le. "
                 tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/email"
-                style="@style/SubHeaderTextViewV4"
+                style="@style/DesignV4InfoText"
                 android:background="@color/transparent"
                 android:clickable="false"
                 android:ellipsize="end"
@@ -41,6 +44,10 @@
                 android:maxLines="1"
                 android:textSize="16sp"
                 android:visibility="visible"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:drawableStart="@drawable/email"
+                android:drawablePadding="4dp"
                 tools:text="Register should always test with le. "
                 tools:visibility="visible" />
 
@@ -55,6 +62,10 @@
                 android:maxLines="1"
                 android:textSize="16sp"
                 android:visibility="visible"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:drawableStart="@drawable/phone"
                 tools:text="Register should always test with le. "
                 tools:visibility="visible" />
 
@@ -66,9 +77,13 @@
                 android:ellipsize="end"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:maxLines="1"
+                android:maxLines="3"
                 android:textSize="16sp"
                 android:visibility="visible"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:drawableStart="@drawable/work"
                 tools:text="Register should always test with le. "
                 tools:visibility="visible" />
 
@@ -83,6 +98,10 @@
                 android:maxLines="1"
                 android:textSize="16sp"
                 android:visibility="visible"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:drawableStart="@drawable/website"
                 tools:text="Register should always test with le. "
                 tools:visibility="visible" />
 
@@ -94,9 +113,13 @@
                 android:ellipsize="end"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:maxLines="1"
+                android:maxLines="2"
                 android:textSize="16sp"
                 android:visibility="visible"
+                android:drawablePadding="4dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:drawableStart="@drawable/address"
                 tools:text="Register should always test with le. "
                 tools:visibility="visible" />
 
@@ -111,6 +134,9 @@
                 android:maxLines="1"
                 android:textSize="16sp"
                 android:visibility="visible"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:paddingStart="2dp"
                 tools:text="Register should always test with le. "
                 tools:visibility="visible" />
         </LinearLayout>

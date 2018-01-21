@@ -34,6 +34,5 @@ public class ContactDetailsViewModel extends AndroidViewModel {
         } catch (Exception e) {
             errorLiveData.setValue(e);
         }
-
     }
 }

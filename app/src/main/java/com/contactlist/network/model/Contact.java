@@ -1,5 +1,7 @@
 package com.contactlist.network.model;
 
+import android.text.TextUtils;
+
 /**
  * Created by ankit on 21/01/18.
  */
@@ -76,5 +78,53 @@ public class Contact {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAddressString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        Address address = getAddress();
+        if (!TextUtils.isEmpty(address.getSuite())) {
+            stringBuilder.append(address.getSuite());
+            if (!TextUtils.isEmpty(address.getStreet())) {
+                stringBuilder.append(", ");
+            }
+        }
+        if (!TextUtils.isEmpty(address.getStreet())) {
+            stringBuilder.append(address.getStreet());
+            if (!TextUtils.isEmpty(address.getCity())) {
+                stringBuilder.append(", ");
+            }
+        }
+        if (!TextUtils.isEmpty(address.getCity())) {
+            stringBuilder.append(address.getCity());
+        }
+        if (!TextUtils.isEmpty(address.getZipcode())) {
+            stringBuilder.append("- ");
+            stringBuilder.append(address.getZipcode());
+        }
+        stringBuilder.append(".");
+        return stringBuilder.toString();
+    }
+
+    public String getCompanyString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        Company company = getCompany();
+        if (!TextUtils.isEmpty(company.getName())) {
+            stringBuilder.append(company.getName());
+            if (!TextUtils.isEmpty(company.getCatchPhrase())) {
+                stringBuilder.append(", ");
+            }
+        }
+        if (!TextUtils.isEmpty(company.getCatchPhrase())) {
+            stringBuilder.append(company.getCatchPhrase());
+            if (!TextUtils.isEmpty(company.getBs())) {
+                stringBuilder.append(", ");
+            }
+        }
+        if (!TextUtils.isEmpty(company.getBs())) {
+            stringBuilder.append(company.getBs());
+        }
+        stringBuilder.append(".");
+        return stringBuilder.toString();
     }
 }

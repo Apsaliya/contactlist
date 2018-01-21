@@ -1,21 +1,17 @@
 package com.contactlist;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.contactlist.network.model.Contact;
 import com.contactlist.utils.Cache;
 import com.contactlist.viewmodel.ContactDetailsViewModel;
-import com.contactlist.viewmodel.ContactListViewModel;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -53,21 +49,24 @@ public class ContactDetailsActivity extends BaseActivity {
         viewModel.setCacheKey(cacheKey);
 
         observeViewModel(viewModel);
+        observeErrorData(viewModel);
+    }
+
+    private void observeErrorData(ContactDetailsViewModel viewModel) {
+        viewModel.errorLiveData.observe(this, throwable -> Toast.makeText(activity, getString(R.string.something_went_wrong), Toast.LENGTH_LONG).show());
     }
 
     private void observeViewModel(ContactDetailsViewModel viewModel) {
-        viewModel.contactLiveData.observe(this, new Observer<Contact>() {
-            @Override
-            public void onChanged(@Nullable Contact contact) {
-                Log.d("change received", "change");
-                name.setText(contact.getName());
-                email.setText(contact.getEmail());
-                phone.setText(contact.getPhone());
-                company.setText(contact.getCompany().toString());
-                website.setText(contact.getWebsite());
-                username.setText(contact.getUsername());
-                address.setText(contact.getAddress().toString());
-            }
+        viewModel.contactLiveData.observe(this, contact -> {
+            name.setText(contact.getName());
+            email.setText(contact.getEmail());
+            phone.setText(contact.getPhone());
+            company.setText(contact.getCompanyString());
+            website.setText(contact.getWebsite());
+            String usernameString = "@  " +
+                    contact.getUsername();
+            username.setText(usernameString);
+            address.setText(contact.getAddressString());
         });
     }
 

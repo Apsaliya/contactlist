@@ -9,7 +9,7 @@ public class States {
     public static int LOADING_FINISHED = 1;
     public static int ERROR = 2;
     private int state;
-    private String msg;
+    private Throwable t;
 
     public int getState() {
         return state;
@@ -19,11 +19,11 @@ public class States {
         this.state = state;
     }
 
-    public String getMsg() {
-        return msg;
+    public Throwable getErrorThrowable() {
+        return t;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setErrorThrowable(Throwable t) {
+        this.t = t;
     }
 }
