@@ -1,15 +1,20 @@
 package com.contactlist.di;
 
 import android.arch.lifecycle.ViewModelProvider;
+import android.util.Base64;
 
 import com.contactlist.network.ContactListService;
+import com.contactlist.network.NetworkConstants;
 import com.contactlist.viewmodel.ContactListViewModelFactory;
 
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -21,9 +26,32 @@ public class AppModule {
     @Singleton
     @Provides
     ContactListService provideContactListService() {
+
+        // for loggin we use our own interceptor
+        //HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        //loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+
+        // read-connect-write timeouts, setting interceptor we created above
+        OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
+
+        okHttpBuilder.addInterceptor(chain -> {
+            Request original = chain.request();
+
+            Request request = original.newBuilder()
+                    .header("Accept", "application/json")
+                    .build();
+
+            return chain.proceed(request);
+        });
+        //okHttpBuilder.interceptors().add(loggingInterceptor);
+        OkHttpClient okHttpClient = okHttpBuilder.build();
+
+
         return new Retrofit.Builder()
-                .baseUrl("")
+                .baseUrl(NetworkConstants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .client(okHttpClient)
                 .build()
                 .create(ContactListService.class);
     }

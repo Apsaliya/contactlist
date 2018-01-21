@@ -2,6 +2,7 @@ package com.contactlist.di;
 
 import android.app.Application;
 
+import com.contactlist.ContactDetailsActivity;
 import com.contactlist.ContactList;
 import com.contactlist.MainActivity;
 import com.contactlist.view.ui.ContactListFragment;
@@ -27,5 +28,6 @@ public interface AppComponent {
     }
     void inject(ContactList contactList);
     void inject(MainActivity mainActivity);
+    void inject(ContactDetailsActivity contactDetailsActivity);
     void inject(ContactListFragment fragment);
 }

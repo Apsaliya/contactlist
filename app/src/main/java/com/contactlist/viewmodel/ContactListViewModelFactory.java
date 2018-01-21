@@ -26,6 +26,7 @@ public class ContactListViewModelFactory implements ViewModelProvider.Factory {
         creators = new ArrayMap<>();
 
         creators.put(ContactListViewModel.class, viewModelSubComponent::contactListViewModel);
+        creators.put(ContactDetailsViewModel.class, viewModelSubComponent::contactDetailsViewModel);
     }
 
     @NonNull

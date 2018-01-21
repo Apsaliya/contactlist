@@ -4,19 +4,12 @@
     android:id="@+id/plank"
     style="@style/PlankStyleDesignV4"
     android:foreground="?android:attr/selectableItemBackground"
-    android:paddingTop="0dp"
-    android:tag="front">
+    android:paddingTop="0dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/profile_photo"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical" />
 
         <LinearLayout
             android:id="@+id/info_linearLayout"
@@ -24,9 +17,9 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="14dp"
             android:layout_marginEnd="4dp"
-            android:layout_marginLeft="56dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginRight="4dp"
-            android:layout_marginStart="56dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
             android:clickable="false"
             android:focusable="false"
@@ -45,7 +38,7 @@
                 android:focusableInTouchMode="false"
                 android:maxLines="1"
                 android:textSize="14sp"
-                android:visibility="gone"
+                android:visibility="visible"
                 tools:text="Register should always test with le. "
                 tools:visibility="visible" />
 
@@ -65,7 +58,7 @@
                     android:focusableInTouchMode="false"
                     android:gravity="left"
                     android:maxLines="1"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     tools:text="Register you should always t"
                     tools:visibility="visible" />
 
@@ -87,7 +80,7 @@
                     android:includeFontPadding="false"
                     android:maxLines="1"
                     android:textSize="@dimen/font_size_text_small"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     tools:text="Register you should always test with long enough text as the sample. And I think this should be made till third line as well."
                     tools:visibility="visible" />
 
@@ -99,8 +92,6 @@
     <View
         android:id="@+id/bottom_below"
         style="@style/HorizontalDividerV4"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="54dp"
-        android:layout_marginStart="54dp" />
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

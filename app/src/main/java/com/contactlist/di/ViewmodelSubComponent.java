@@ -1,5 +1,6 @@
 package com.contactlist.di;
 
+import com.contactlist.viewmodel.ContactDetailsViewModel;
 import com.contactlist.viewmodel.ContactListViewModel;
 
 import dagger.Subcomponent;
@@ -15,4 +16,5 @@ public interface ViewmodelSubComponent {
     }
 
     ContactListViewModel contactListViewModel();
+    ContactDetailsViewModel contactDetailsViewModel();
 }
