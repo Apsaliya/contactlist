@@ -27,11 +27,6 @@ public class AppModule {
     @Provides
     ContactListService provideContactListService() {
 
-        // for loggin we use our own interceptor
-        //HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        //loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-
-        // read-connect-write timeouts, setting interceptor we created above
         OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
 
         okHttpBuilder.addInterceptor(chain -> {
@@ -43,7 +38,6 @@ public class AppModule {
 
             return chain.proceed(request);
         });
-        //okHttpBuilder.interceptors().add(loggingInterceptor);
         OkHttpClient okHttpClient = okHttpBuilder.build();
 
 

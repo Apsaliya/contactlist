@@ -1,4 +1,4 @@
-package com.contactlist;
+package com.contactlist.view.ui;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -9,6 +9,8 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.contactlist.ContactList;
+import com.contactlist.R;
 import com.contactlist.network.model.Contact;
 import com.contactlist.utils.Cache;
 import com.contactlist.viewmodel.ContactDetailsViewModel;

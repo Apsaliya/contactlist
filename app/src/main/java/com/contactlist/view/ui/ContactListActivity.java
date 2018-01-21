@@ -1,4 +1,4 @@
-package com.contactlist;
+package com.contactlist.view.ui;
 
 import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.ViewModelProvider;
@@ -12,8 +12,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.contactlist.ContactList;
+import com.contactlist.R;
 import com.contactlist.view.adapter.ContactListAdapter;
 import com.contactlist.view.callback.ContactClickCallback;
+import com.contactlist.view.ui.BaseActivity;
+import com.contactlist.view.ui.ContactDetailsActivity;
 import com.contactlist.view.ui.States;
 import com.contactlist.viewmodel.ContactListViewModel;
 import com.github.ybq.android.spinkit.SpinKitView;
@@ -24,9 +28,8 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import retrofit2.HttpException;
 
-public class MainActivity extends BaseActivity {
+public class ContactListActivity extends BaseActivity {
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;

@@ -2,6 +2,7 @@ package com.contactlist.data.datasource;
 
 import android.arch.lifecycle.LiveData;
 
+import com.contactlist.data.datasource.remotedatasource.RemoteDataSource;
 import com.contactlist.network.ContactListService;
 import com.contactlist.network.model.Contact;
 
@@ -19,15 +20,15 @@ import io.reactivex.Flowable;
 
 @Singleton
 public class ContactRepo {
-    private ContactListService contactListService;
+    private RemoteDataSource remoteDataSource;
 
     @Inject
-    public ContactRepo(ContactListService contactListService) {
-        this.contactListService = contactListService;
+    public ContactRepo(RemoteDataSource remoteDataSource) {
+        this.remoteDataSource = remoteDataSource;
     }
 
     public Flowable<List<Contact>> getContactList() {
-        return contactListService.getContactList().toFlowable();
+        return remoteDataSource.getContactList();
     }
 
     public Flowable<List<Contact>> sortList(List<Contact> contacts, int order) {

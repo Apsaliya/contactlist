@@ -2,9 +2,9 @@ package com.contactlist.di;
 
 import android.app.Application;
 
-import com.contactlist.ContactDetailsActivity;
+import com.contactlist.view.ui.ContactDetailsActivity;
 import com.contactlist.ContactList;
-import com.contactlist.MainActivity;
+import com.contactlist.view.ui.ContactListActivity;
 import com.contactlist.view.ui.ContactListFragment;
 
 import javax.inject.Singleton;
@@ -27,7 +27,7 @@ public interface AppComponent {
         AppComponent build();
     }
     void inject(ContactList contactList);
-    void inject(MainActivity mainActivity);
+    void inject(ContactListActivity contactListActivity);
     void inject(ContactDetailsActivity contactDetailsActivity);
     void inject(ContactListFragment fragment);
 }
