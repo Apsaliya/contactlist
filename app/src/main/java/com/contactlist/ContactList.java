@@ -2,6 +2,7 @@ package com.contactlist;
 
 import android.app.Application;
 
+import com.contactlist.di.AppComponent;
 import com.contactlist.di.DaggerAppComponent;
 
 
@@ -11,11 +12,18 @@ import com.contactlist.di.DaggerAppComponent;
 
 public class ContactList extends Application {
 
+    private AppComponent myComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-        DaggerAppComponent.builder().application(this)
-                .build().inject(this);
+        myComponent = DaggerAppComponent.builder().application(this)
+                .build();
+        myComponent.inject(this);
+    }
+
+    public AppComponent getMyComponent() {
+        return myComponent;
     }
 }
