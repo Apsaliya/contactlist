@@ -9,6 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.contactlist.network.model.Contact;
@@ -37,6 +40,7 @@ public class MainActivity extends BaseActivity {
     SpinKitView spinKitView;
 
     private ContactListAdapter contactListAdapter;
+    private ContactListViewModel contactListViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,16 +56,36 @@ public class MainActivity extends BaseActivity {
         contactListAdapter = new ContactListAdapter(contactClickCallback);
         contactList.setAdapter(contactListAdapter);
 
-        final ContactListViewModel viewModel = ViewModelProviders.of(this,
+        contactListViewModel = ViewModelProviders.of(this,
                 viewModelFactory).get(ContactListViewModel.class);
 
-        observeViewModel(viewModel);
-        observeStates(viewModel);
+        observeViewModel();
+        observeStates();
 
     }
 
-    private void observeStates(ContactListViewModel viewModel) {
-        viewModel.statesLiveData.observe(this, state -> {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.contact_list_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.aesc:
+                contactListViewModel.sortList(0);
+                return true;
+            case R.id.desc:
+                contactListViewModel.sortList(-1);
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void observeStates() {
+        contactListViewModel.statesLiveData.observe(this, state -> {
             if (States.ERROR == state.getState()) {
 
             } else if (States.LOADING == state.getState()) {
@@ -74,8 +98,8 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private void observeViewModel(ContactListViewModel viewModel) {
-        viewModel.contactListLiveData.observe(this, contacts -> {
+    private void observeViewModel() {
+        contactListViewModel.contactListLiveData.observe(this, contacts -> {
             Log.d("change received", "change");
             contactListAdapter.updateData(contacts);
         });
