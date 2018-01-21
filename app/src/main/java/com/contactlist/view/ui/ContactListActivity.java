@@ -16,9 +16,6 @@ import com.contactlist.ContactList;
 import com.contactlist.R;
 import com.contactlist.view.adapter.ContactListAdapter;
 import com.contactlist.view.callback.ContactClickCallback;
-import com.contactlist.view.ui.BaseActivity;
-import com.contactlist.view.ui.ContactDetailsActivity;
-import com.contactlist.view.ui.States;
 import com.contactlist.viewmodel.ContactListViewModel;
 import com.github.ybq.android.spinkit.SpinKitView;
 
